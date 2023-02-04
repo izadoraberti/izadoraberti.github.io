@@ -3,59 +3,69 @@
   <head>
     <title>ChatGPT API Example</title>
     <style>
+      /* Background pattern */
       body {
+        background-image: url("https://i.stack.imgur.com/54HBl.png");
+        background-size: cover;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Form styling */
+      div {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
         text-align: center;
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-      }
-
-      h1 {
-        color: #4CAF50;
-        margin-top: 50px;
-      }
-
-      #question {
         width: 50%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        box-sizing: border-box;
-        border: 2px solid #ccc;
-        border-radius: 4px;
-        font-size: 18px;
-        text-align: center;
       }
 
-      #submit-button {
-        width: 20%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        border-radius: 4px;
-        background-color: #4CAF50;
-        color: white;
-        cursor: pointer;
+      /* Input field */
+      input[type="text"] {
+        padding: 10px;
         font-size: 18px;
-      }
-
-      #response {
         width: 80%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        box-sizing: border-box;
-        border: 2px solid #ccc;
-        border-radius: 4px;
-        word-wrap: break-word;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Submit button */
+      button[type="submit"] {
+        padding: 10px 20px;
+        background-color: cornflowerblue;
+        color: white;
+        border-radius: 5px;
+        border: none;
         font-size: 18px;
+        cursor: pointer;
+      }
+
+      /* Response field */
+      #response {
+        margin-top: 20px;
+        font-size: 18px;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        width: 50%;
         text-align: center;
       }
     </style>
   </head>
   <body>
-    <h1>Oi Carlos e Petra! Aqui é a Iza</h1>
     <div>
-      <label for="question">Ask anything:</label>
-      <input type="text" id="question" name="question">
+      <h1>Oi gente! Aqui é a Iza</h1>
+      <div>
+        <label for="question">PERGUNTA QUALQUER COISA:</label>
+        <input type="text" id="question" name="question">
+      </div>
+      <button id="submit-button">Submit</button>
     </div>
-    <button id="submit-button">Submit</button>
     <div id="response"></div>
 
     <!-- Load jQuery -->
@@ -63,7 +73,7 @@
 
     <!-- Your ChatGPT API key -->
     <script>
-      const API_KEY = "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";
+      const API_KEY = "YOUR_API_KEY_HERE";
     </script>
 
     <!-- ChatGPT integration code -->
@@ -77,31 +87,23 @@
         $("#question").val("");
 
         // Send request to ChatGPT
-        $.ajax({
-          url: `https://api.openai.com/v1/engines/davinci/jobs`,
-          type: "POST",
-          headers: {
-            "Authorization": `Bearer ${API_KEY}`
-          },
-          data: JSON.stringify({
-            prompt: input,
-            max_tokens: 100,
-            n: 1,
-            stop: "",
-            temperature: 0.5
-          }),
-          contentType: "application/json; charset=utf-8",
-          dataType: "json",
-          success: function(data) {
-            // Display ChatGPT response
-            $("#response").text(data.choices[0].text);
-          },
-          error: function(error) {
-            console.error(error);
-          }
-        });
-      });
-    </script>
-  </body>
-</html>
+		$.ajax({
+		  url: `https://api.openai.com/v1/engines/davinci/jobs`,
+		  type: "POST",
+		  headers: {
+			"Authorization": `Bearer ${API_KEY}`,
+			"Content-Type": "application/json"
+		  },
+	  data: JSON.stringify({
+		prompt: input,
+		max_tokens: 100,
+		n: 1,
+		stop: "",
+		temperature: 0.5
+	  }),
+	success: function(data) {
+    // Display response
+    $("#response").text(data.choices[0].text);
+  }
+});
 
