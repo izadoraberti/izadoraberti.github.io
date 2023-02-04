@@ -13,3 +13,97 @@
     <div id="response"></div>
   </body>
 </html>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ChatGPT API Example</title>
+  </head>
+  <body>
+    <h1>Chat with OpenAI's ChatGPT API</h1>
+    <div>
+      <label for="question">Enter your question:</label>
+      <input type="text" id="question" name="question">
+    </div>
+    <button id="submit-button">Submit</button>
+    <div id="response"></div>
+
+    <script>
+      const submitButton = document.querySelector('#submit-button');
+      const questionInput = document.querySelector('#question');
+      const responseDiv = document.querySelector('#response');
+
+      submitButton.addEventListener('click', () => {
+        const question = questionInput.value;
+        fetch(`https://api.openai.com/v1/engines/davinci/jobs`, {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer <API_KEY>',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            prompt: question,
+            max_tokens: 100,
+            n: 1,
+            stop: '',
+            temperature: 0.5,
+          }),
+        })
+          .then(response => response.json())
+          .then(data => {
+            const response = data.choices[0].text;
+            responseDiv.textContent = response;
+          })
+          .catch(error => {
+            console.error(error);
+            responseDiv.textContent = 'An error occurred while communicating with the API.';
+          });
+      });
+    </script>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ChatGPT API Example</title>
+    <style>
+      #question {
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+      }
+      #submit-button {
+        width: 20%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-radius: 4px;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+      }
+      #response {
+        width: 80%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        word-wrap: break-word;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Chat with OpenAI's ChatGPT API</h1>
+    <div>
+      <label for="question">Enter your question:</label>
+      <input type="text" id="question" name="question">
+    </div>
+    <button id="submit-button">Submit</button>
+    <div id="response"></div>
+  </body>
+</html>
+
