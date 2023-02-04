@@ -74,12 +74,14 @@ $("#question").on("keyup", function(event) {
   if (event.keyCode === 13) {
     submitQuestion();
 	alert("É uma boa pergunta")
+	console.log("printando")
   }
 });
 
 $("#submit-button").on("click", function() {
   submitQuestion();
   alert("resposta ta vindo hem")
+  console.log("printando2")
 });
 
 function submitQuestion() {
