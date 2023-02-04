@@ -68,17 +68,6 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	
-	
-  </head>
-  <body>
-    <div>
-      <h1>Oi gente! Aqui é a Iza</h1>
-	<div>
-	  <label for="question">PERGUNTA QUALQUER COISA:</label>
-	  <input type="text" id="question" name="question">
-	</div>
-	<button id="submit-button">Submit</button>
-	<div id="response"></div>
 
 <script>
 
@@ -95,6 +84,19 @@ $(document).ready(function() {
       console.log("printando")
     }
   });
+  
+  	/*
+  </head>
+  <body>
+    <div>
+      <h1>Oi gente! Aqui é a Iza</h1>
+	<div>
+	  <label for="question">PERGUNTA QUALQUER COISA:</label>
+	  <input type="text" id="question" name="question">
+	</div>
+	<button id="submit-button">Submit</button>
+	<div id="response"></div>
+*/
 
   $("#submit-button").on("click", function() {
     submitQuestion();
