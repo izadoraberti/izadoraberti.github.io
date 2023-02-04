@@ -1,10 +1,19 @@
-
-
 <!DOCTYPE html>
 <html>
   <head>
     <title>ChatGPT API Example</title>
     <style>
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+
+      h1 {
+        color: #4CAF50;
+        margin-top: 50px;
+      }
+
       #question {
         width: 50%;
         padding: 12px 20px;
@@ -12,7 +21,10 @@
         box-sizing: border-box;
         border: 2px solid #ccc;
         border-radius: 4px;
+        font-size: 18px;
+        text-align: center;
       }
+
       #submit-button {
         width: 20%;
         padding: 12px 20px;
@@ -21,7 +33,9 @@
         background-color: #4CAF50;
         color: white;
         cursor: pointer;
+        font-size: 18px;
       }
+
       #response {
         width: 80%;
         padding: 12px 20px;
@@ -30,17 +44,18 @@
         border: 2px solid #ccc;
         border-radius: 4px;
         word-wrap: break-word;
+        font-size: 18px;
+        text-align: center;
       }
     </style>
   </head>
   <body>
-    <h1>Chat with OpenAI's ChatGPT API</h1>
+    <h1>Oi Carlos e Petra! Aqui é a Iza</h1>
     <div>
-      <label for="question">Enter your question:</label>
+      <label for="question">Ask anything:</label>
       <input type="text" id="question" name="question">
     </div>
     <button id="submit-button">Submit</button>
     <div id="response"></div>
   </body>
 </html>
-
