@@ -73,11 +73,13 @@ const API_KEY = "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";
 $("#question").on("keyup", function(event) {
   if (event.keyCode === 13) {
     submitQuestion();
+	alert("É uma boa pergunta")
   }
 });
 
 $("#submit-button").on("click", function() {
   submitQuestion();
+  alert("resposta ta vindo hem")
 });
 
 function submitQuestion() {
