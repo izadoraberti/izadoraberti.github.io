@@ -57,5 +57,51 @@
     </div>
     <button id="submit-button">Submit</button>
     <div id="response"></div>
+
+    <!-- Load jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Your ChatGPT API key -->
+    <script>
+      const API_KEY = "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";
+    </script>
+
+    <!-- ChatGPT integration code -->
+    <script>
+      // Send message to ChatGPT and display response
+      $("#submit-button").click(function() {
+        // Get input text
+        const input = $("#question").val();
+
+        // Clear input field
+        $("#question").val("");
+
+        // Send request to ChatGPT
+        $.ajax({
+          url: `https://api.openai.com/v1/engines/davinci/jobs`,
+          type: "POST",
+          headers: {
+            "Authorization": `Bearer ${API_KEY}`
+          },
+          data: JSON.stringify({
+            prompt: input,
+            max_tokens: 100,
+            n: 1,
+            stop: "",
+            temperature: 0.5
+          }),
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          success: function(data) {
+            // Display ChatGPT response
+            $("#response").text(data.choices[0].text);
+          },
+          error: function(error) {
+            console.error(error);
+          }
+        });
+      });
+    </script>
   </body>
 </html>
+
