@@ -87,7 +87,7 @@ $("#submit-button").on("click", function() {
 function submitQuestion() {
   let input = $("#question").val();
 
-  $.ajax({
+$.ajax({
     url: `https://api.openai.com/v1/engines/davinci/jobs`,
     type: "POST",
     headers: {
@@ -104,8 +104,12 @@ function submitQuestion() {
     success: function(data) {
       // Display response
       $("#response").text(data.choices[0].text);
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.error(textStatus, errorThrown);
+      $("#response").text("Ocorreu um erro. Tente novamente mais tarde.");
     }
-  });
+});
 }
 </script>
 
